@@ -23,11 +23,10 @@
             --accent-glow: rgba(175, 82, 222, 0.4);
             --gold: #ffd166;
             --bg: #09090e;
-            --glass-bg: rgba(25, 20, 35, 0.65);
+            --glass-bg: rgba(25, 20, 35, 0.68);
             --glass-border: rgba(255, 255, 255, 0.16);
             --text-main: #ffffff;
-            --text-sub: rgba(255, 255, 255, 0.78);
-            --book-speed: 0.8s;
+            --text-sub: rgba(255, 255, 255, 0.8);
         }
 
         * {
@@ -111,15 +110,9 @@
         }
 
         @keyframes floatUpRealistic {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-70vh) rotate(8deg);
-            }
-            100% {
-                transform: translateY(-135vh) rotate(-10deg);
-            }
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-70vh) rotate(8deg); }
+            100% { transform: translateY(-135vh) rotate(-10deg); }
         }
 
         /* --- MUSIC & SFX CONTROLS --- */
@@ -137,7 +130,7 @@
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             color: white;
             padding: 8px 14px;
             border-radius: 30px;
@@ -152,7 +145,7 @@
         }
 
         .control-pill:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.22);
             transform: translateY(-1px);
         }
 
@@ -191,13 +184,13 @@
             border: 1px solid var(--glass-border);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
             border-radius: 32px;
-            padding: 32px 24px;
+            padding: 28px 22px;
             text-align: center;
             display: none;
             opacity: 0;
             transform: scale(0.96) translateY(12px);
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            min-height: 540px;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 520px;
             max-height: 90vh;
             position: relative;
             flex-direction: column;
@@ -229,7 +222,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -237,9 +230,9 @@
 
         h1.main-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #ffffff 30%, #ffb3c1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -250,105 +243,83 @@
             color: var(--text-sub);
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             max-width: 380px;
         }
 
-        /* --- 3D BOOK STYLES --- */
-        .book-wrapper {
-            perspective: 1200px;
-            margin: 10px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
-        .book {
-            position: relative;
-            width: 270px;
-            height: 380px;
-            transition: transform var(--book-speed) cubic-bezier(0.25, 1, 0.5, 1);
-            transform-style: preserve-3d;
-            cursor: pointer;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
-        }
-
-        .book.open {
-            transform: translateX(18%) rotateY(-180deg);
-        }
-
-        @media (max-width: 400px) {
-            .book {
-                width: 240px;
-                height: 350px;
-            }
-            .book.open {
-                transform: translateX(12%) rotateY(-180deg);
-            }
-        }
-
-        .cover, .content-page {
-            position: absolute;
-            inset: 0;
-            border-radius: 8px 18px 18px 8px;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-        }
-
-        .cover {
-            background: linear-gradient(135deg, #ff2d55 0%, #b83280 50%, #7928ca 100%);
-            z-index: 2;
-            transform-origin: left;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: inset 4px 0 10px rgba(0,0,0,0.3), inset -2px 0 5px rgba(255,255,255,0.3);
-        }
-
-        .cover::after {
-            content: '';
-            position: absolute;
-            left: 14px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: rgba(0,0,0,0.25);
-            box-shadow: 1px 0 0 rgba(255,255,255,0.2);
-        }
-
-        .content-page {
+        /* --- CHAPTER ONE: LOVE LETTER PARCHMENT --- */
+        .love-letter-card {
             background: #fffdfa;
             color: #2b2b2b;
-            transform: rotateY(180deg);
-            z-index: 1;
-            box-shadow: inset 10px 0 20px rgba(0,0,0,0.06), 0 10px 25px rgba(0,0,0,0.2);
-            border-left: 1px solid #e0dcd5;
+            border-radius: 20px;
+            padding: 24px 20px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 20px rgba(255, 45, 85, 0.04);
+            border: 1px solid rgba(255, 179, 193, 0.6);
+            position: relative;
+            margin: 8px 0 14px 0;
+            text-align: left;
+        }
+
+        .love-letter-card::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px dashed rgba(255, 45, 85, 0.25);
+            border-radius: 14px;
+            pointer-events: none;
+        }
+
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #f0e6ec;
+            padding-bottom: 8px;
+        }
+
+        .letter-stamp {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .letter-date {
+            font-size: 0.72rem;
+            color: #888;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .book-text {
-            font-size: 0.8rem;
-            line-height: 1.65;
-            color: #4a4a4a;
-            text-align: left;
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: #444;
             max-height: 250px;
             overflow-y: auto;
-            padding: 6px;
+            padding-right: 4px;
             font-family: 'Inter', sans-serif;
             scrollbar-width: thin;
-        }
-
-        .typewriter-text {
-            white-space: pre-wrap;
-            word-wrap: break-word;
         }
 
         .typewriter-cursor {
             display: inline-block;
             width: 2px;
-            height: 12px;
+            height: 13px;
             background: var(--primary);
             margin-left: 2px;
             animation: blink 0.8s infinite;
@@ -364,7 +335,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 14px;
-            margin: 15px 0;
+            margin: 12px 0 16px 0;
             width: 100%;
         }
 
@@ -581,9 +552,9 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 20px;
             padding: 20px 18px;
-            margin: 12px 0 18px 0;
+            margin: 10px 0 16px 0;
             width: 100%;
-            max-height: 340px;
+            max-height: 330px;
             overflow-y: auto;
             text-align: left;
             box-shadow: inset 0 2px 6px rgba(0,0,0,0.25);
@@ -603,8 +574,8 @@
             background: linear-gradient(135deg, rgba(255, 45, 85, 0.1), rgba(175, 82, 222, 0.15));
             border: 1px solid rgba(255, 179, 193, 0.3);
             border-radius: 24px;
-            padding: 24px 20px;
-            margin: 16px 0;
+            padding: 22px 20px;
+            margin: 14px 0 16px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
@@ -632,20 +603,28 @@
             margin-bottom: 2px;
         }
 
-        /* --- BUTTONS & INTERACTION --- */
+        /* --- BUTTONS & NAVIGATION ROWS --- */
+        .page-nav-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
         .btn {
             background: linear-gradient(135deg, #ffffff 0%, #f0f0f5 100%);
             color: #111;
-            padding: 14px 30px;
+            padding: 13px 26px;
             border-radius: 50px;
             border: none;
             cursor: pointer;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             letter-spacing: 1.2px;
-            margin-top: 16px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             display: inline-flex;
             align-items: center;
@@ -656,9 +635,7 @@
         }
 
         .btn:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, #ff5277 100%);
-            color: white;
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 12px 25px var(--primary-glow);
         }
 
@@ -676,6 +653,18 @@
             box-shadow: 0 12px 30px rgba(255, 45, 85, 0.6);
         }
 
+        .btn.btn-secondary {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn.btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.22);
+            color: white;
+        }
+
         .btn.btn-accent {
             background: linear-gradient(135deg, var(--accent) 0%, #9026d4 100%);
             color: white;
@@ -688,7 +677,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 18px;
             position: relative;
             min-height: 80px;
         }
@@ -757,24 +746,29 @@
             font-weight: 500;
         }
 
-        /* Progress indicator dots */
+        /* Clickable Progress Dots */
         .step-dots {
             display: flex;
-            gap: 6px;
+            gap: 7px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 18px;
         }
 
         .dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.22);
             transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .dot.active {
-            width: 22px;
+            width: 24px;
             border-radius: 10px;
             background: var(--primary);
             box-shadow: 0 0 8px var(--primary-glow);
@@ -820,7 +814,7 @@
         </button>
     </div>
 
-    <!-- Main Multi-step Card -->
+    <!-- Main Multi-step Card Container -->
     <div class="container">
         
         <!-- ================= PAGE 1: INTRODUCTION ================= -->
@@ -830,7 +824,7 @@
             <p class="intro-text">
                 I built this little corner of the internet just for you. Every word, every memory, every pixel was crafted with all my heart.
             </p>
-            <div style="font-size: 3rem; margin: 10px 0 20px 0; animation: pulseYes 2s infinite;">
+            <div style="font-size: 3.2rem; margin: 10px 0 20px 0; animation: pulseYes 2s infinite;">
                 🎁
             </div>
             <button class="btn btn-primary" onclick="goTo(2)">
@@ -838,55 +832,56 @@
                 <span>✨</span>
             </button>
             <div class="step-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot active" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+                <span class="dot" onclick="goTo(3)"></span>
+                <span class="dot" onclick="goTo('p3-hug')"></span>
+                <span class="dot" onclick="goTo(4)"></span>
+                <span class="dot" onclick="goTo(5)"></span>
+                <span class="dot" onclick="goTo(6)"></span>
             </div>
         </div>
 
-        <!-- ================= PAGE 2: 3D STORY BOOK ================= -->
+        <!-- ================= PAGE 2: CHAPTER ONE (LOVE LETTER) ================= -->
         <div class="page" id="p2">
             <div class="badge">📖 Chapter One</div>
-            <div class="book-wrapper">
-                <div class="book" id="myBook" onclick="openBook()">
-                    <div class="cover">
-                        <span style="font-size: 2.8rem; margin-bottom: 8px;">🎂</span>
-                        <h2 style="font-family: 'Playfair Display', serif; color: white; font-size: 1.5rem; letter-spacing: 1px;">A Story Of Us</h2>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.72rem; margin-top: 12px; font-weight: 500;">(Tap to Open 💖)</p>
-                    </div>
-                    <div class="content-page">
-                        <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); font-size: 1.15rem; margin-bottom: 8px;">Happy Birthday, My Love</h2>
-                        <div class="book-text">
-                            <span class="typewriter-text" id="bookText"></span><span class="typewriter-cursor" id="bookCursor"></span>
-                        </div>
-                        <button class="btn btn-primary" style="padding: 10px 20px; font-size: 0.68rem; margin-top: 12px;" onclick="event.stopPropagation(); goTo(3);">
-                            <span>View Memories 📸</span>
-                        </button>
-                    </div>
+            
+            <div class="love-letter-card">
+                <div class="letter-header">
+                    <span class="letter-stamp">💌 A Story Of Us</span>
+                    <span class="letter-date">For Lilly</span>
+                </div>
+                <h2 class="letter-title">Happy Birthday, My Love</h2>
+                <div class="book-text">
+                    <span id="bookText"></span><span class="typewriter-cursor" id="bookCursor"></span>
                 </div>
             </div>
-            <p style="font-size: 0.72rem; color: var(--text-sub); margin-top: 8px;">
-                Tap the book cover to read the letter
-            </p>
+
+            <!-- Prominent Navigation Row: Never get stuck -->
+            <div class="page-nav-row">
+                <button class="btn btn-secondary" onclick="goTo(1)">
+                    <span>⬅ Back</span>
+                </button>
+                <button class="btn btn-primary" onclick="goTo(3)">
+                    <span>View Memories 📸 ➔</span>
+                </button>
+            </div>
+
             <div class="step-dots">
-                <span class="dot"></span>
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot active" onclick="goTo(2)"></span>
+                <span class="dot" onclick="goTo(3)"></span>
+                <span class="dot" onclick="goTo('p3-hug')"></span>
+                <span class="dot" onclick="goTo(4)"></span>
+                <span class="dot" onclick="goTo(5)"></span>
+                <span class="dot" onclick="goTo(6)"></span>
             </div>
         </div>
 
         <!-- ================= PAGE 3: MEMORIES GALLERY (REAL POLAROIDS) ================= -->
         <div class="page" id="p3">
             <div class="badge">📸 Chapter Two</div>
-            <h1 class="main-title" style="font-size: 1.8rem; margin-bottom: 4px;">Captured Moments</h1>
+            <h1 class="main-title" style="font-size: 1.8rem; margin-bottom: 2px;">Captured Moments</h1>
             <p style="font-size: 0.78rem; color: var(--text-sub); margin-bottom: 8px;">Tap each photo to zoom in ❤️</p>
             
             <div class="memory-grid">
@@ -927,40 +922,52 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="goTo('p3-hug')">
-                <span>Next: A Promise 🤗</span>
-            </button>
+            <div class="page-nav-row">
+                <button class="btn btn-secondary" onclick="goTo(2)">
+                    <span>⬅ Back</span>
+                </button>
+                <button class="btn btn-primary" onclick="goTo('p3-hug')">
+                    <span>A Promise 🤗 ➔</span>
+                </button>
+            </div>
+
             <div class="step-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+                <span class="dot active" onclick="goTo(3)"></span>
+                <span class="dot" onclick="goTo('p3-hug')"></span>
+                <span class="dot" onclick="goTo(4)"></span>
+                <span class="dot" onclick="goTo(5)"></span>
+                <span class="dot" onclick="goTo(6)"></span>
             </div>
         </div>
 
         <!-- ================= PAGE 3-HUG: A PROMISE ================= -->
         <div class="page" id="p3-hug">
             <div class="badge">🫂 Chapter Three</div>
-            <h1 class="main-title" style="font-size: 1.9rem; margin-bottom: 6px;">A Promise 🤗</h1>
+            <h1 class="main-title" style="font-size: 1.9rem; margin-bottom: 4px;">A Promise 🤗</h1>
             
             <div class="hug-card">
                 <div class="hug-text" id="hugText"></div>
             </div>
 
-            <button class="btn btn-primary" onclick="goTo(4)">
-                <span>Continue to My Heart 💖</span>
-            </button>
+            <div class="page-nav-row">
+                <button class="btn btn-secondary" onclick="goTo(3)">
+                    <span>⬅ Back</span>
+                </button>
+                <button class="btn btn-primary" onclick="goTo(4)">
+                    <span>My Heart 💖 ➔</span>
+                </button>
+            </div>
+
             <div class="step-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+                <span class="dot" onclick="goTo(3)"></span>
+                <span class="dot active" onclick="goTo('p3-hug')"></span>
+                <span class="dot" onclick="goTo(4)"></span>
+                <span class="dot" onclick="goTo(5)"></span>
+                <span class="dot" onclick="goTo(6)"></span>
             </div>
         </div>
 
@@ -982,17 +989,23 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="goTo(5)">
-                <span>One Last Question... 💍</span>
-            </button>
+            <div class="page-nav-row">
+                <button class="btn btn-secondary" onclick="goTo('p3-hug')">
+                    <span>⬅ Back</span>
+                </button>
+                <button class="btn btn-primary" onclick="goTo(5)">
+                    <span>One Last Question... 💍 ➔</span>
+                </button>
+            </div>
+
             <div class="step-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+                <span class="dot" onclick="goTo(3)"></span>
+                <span class="dot" onclick="goTo('p3-hug')"></span>
+                <span class="dot active" onclick="goTo(4)"></span>
+                <span class="dot" onclick="goTo(5)"></span>
+                <span class="dot" onclick="goTo(6)"></span>
             </div>
         </div>
 
@@ -1023,18 +1036,18 @@
                 </div>
 
                 <button class="btn btn-accent" onclick="goTo(6)" style="font-size: 0.85rem; padding: 14px 32px;">
-                    <span>Final Surprise 🎉</span>
+                    <span>Final Surprise 🎉 ➔</span>
                 </button>
             </div>
             
             <div class="step-dots" style="margin-top: 15px;">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot active"></span>
-                <span class="dot"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+                <span class="dot" onclick="goTo(3)"></span>
+                <span class="dot" onclick="goTo('p3-hug')"></span>
+                <span class="dot" onclick="goTo(4)"></span>
+                <span class="dot active" onclick="goTo(5)"></span>
+                <span class="dot" onclick="goTo(6)"></span>
             </div>
         </div>
 
@@ -1067,19 +1080,19 @@
                 <button class="btn btn-primary" onclick="triggerLoveShower()" style="font-size: 0.72rem; padding: 10px 20px;">
                     Send Love 💋
                 </button>
-                <button class="btn" onclick="goTo(1)" style="font-size: 0.72rem; padding: 10px 20px; background: rgba(255,255,255,0.15); color: white;">
+                <button class="btn btn-secondary" onclick="goTo(1)" style="font-size: 0.72rem; padding: 10px 20px;">
                     Replay Story 🔄
                 </button>
             </div>
 
             <div class="step-dots" style="margin-top: 18px;">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot active"></span>
+                <span class="dot" onclick="goTo(1)"></span>
+                <span class="dot" onclick="goTo(2)"></span>
+                <span class="dot" onclick="goTo(3)"></span>
+                <span class="dot" onclick="goTo('p3-hug')"></span>
+                <span class="dot" onclick="goTo(4)"></span>
+                <span class="dot" onclick="goTo(5)"></span>
+                <span class="dot active" onclick="goTo(6)"></span>
             </div>
         </div>
 
@@ -1214,15 +1227,10 @@
             }
         }
 
-        // Dreamy acoustic piano chord notes in Hz (Love progression in C)
         const melodyNotes = [
-            // C chord arpeggio
             261.63, 329.63, 392.00, 523.25,
-            // G chord arpeggio
             293.66, 392.00, 493.88, 587.33,
-            // Am chord arpeggio
             220.00, 261.63, 329.63, 440.00,
-            // F chord arpeggio
             174.61, 261.63, 349.23, 440.00
         ];
         let noteIndex = 0;
@@ -1252,8 +1260,8 @@
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15); // A5
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
                 gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2);
                 osc.connect(gain);
@@ -1266,7 +1274,7 @@
         function playCelebrationChime() {
             if (!audioCtx) return;
             try {
-                const notes = [523.25, 659.25, 783.99, 1046.50]; // C-E-G-C
+                const notes = [523.25, 659.25, 783.99, 1046.50];
                 notes.forEach((freq, idx) => {
                     setTimeout(() => {
                         const osc = audioCtx.createOscillator();
@@ -1321,14 +1329,11 @@
             }
         }
 
-        // Auto-initialize audio on first touch
         document.body.addEventListener('click', () => {
             if (!audioCtx) initAudio();
         }, { once: true });
 
         /* --- 4. PAGE NAVIGATION & TRANSITIONS --- */
-        let currentPage = 1;
-
         function goTo(pageNum) {
             playClickChime();
             const current = document.querySelector('.page.active');
@@ -1344,45 +1349,45 @@
                 current.style.display = 'none';
 
                 next.style.display = 'flex';
-                // Trigger reflow
                 void next.offsetWidth;
                 next.classList.add('active');
                 next.style.opacity = '1';
                 next.style.transform = 'scale(1) translateY(0)';
 
                 // Page-specific action triggers
-                if (pageId === 'p3-hug') {
+                if (pageId === 'p2') {
+                    startBookTypewriter();
+                } else if (pageId === 'p3-hug') {
                     startHugTypewriter();
                 } else if (pageId === 'p6') {
                     fireGrandConfetti();
                 }
-            }, 350);
+            }, 300);
         }
 
-        /* --- 5. 3D BOOK & TYPEWRITER --- */
+        /* --- 5. CHAPTER ONE LOVE LETTER TYPEWRITER --- */
         let bookTyped = false;
 
-        function openBook() {
-            initAudio();
-            playClickChime();
-            const bookEl = document.getElementById('myBook');
-            bookEl.classList.toggle('open');
-
-            if (!bookTyped) {
-                bookTyped = true;
-                setTimeout(typewriterBook, 600);
-            }
-        }
-
-        function typewriterBook() {
+        function startBookTypewriter() {
+            if (bookTyped) return;
+            bookTyped = true;
             const text = `From the moment you walked into my world, everything became brighter. You are my greatest blessing and my forever happiness.\n\nTo me, you are everything. Every morning, every night—it's only you. I want you to always stay by my side, today and forever.\n\nMay this year bring you endless happiness, success, and all the love your heart can hold.`;
             const bookTextEl = document.getElementById('bookText');
+            bookTextEl.innerHTML = '';
             let i = 0;
             function type() {
                 if (i < text.length) {
-                    bookTextEl.innerText += text.charAt(i);
-                    i++;
-                    setTimeout(type, 26);
+                    if (text.substring(i, i + 2) === '\n\n') {
+                        bookTextEl.innerHTML += '<br><br>';
+                        i += 2;
+                    } else if (text[i] === '\n') {
+                        bookTextEl.innerHTML += '<br>';
+                        i++;
+                    } else {
+                        bookTextEl.innerHTML += text[i];
+                        i++;
+                    }
+                    setTimeout(type, 22);
                 } else {
                     const cursor = document.getElementById('bookCursor');
                     if (cursor) cursor.style.display = 'none';
@@ -1414,7 +1419,7 @@
                         hugTextEl.innerHTML += text[i];
                         i++;
                     }
-                    setTimeout(typeHug, 22);
+                    setTimeout(typeHug, 20);
                 }
             }
             typeHug();
@@ -1478,11 +1483,9 @@
             }
             const btn = document.getElementById('no-btn');
             
-            // Randomly update text playfully
             btn.innerText = noPhrases[phraseIdx % noPhrases.length];
             phraseIdx++;
 
-            // Move within the container boundaries safely
             const card = document.getElementById('p5');
             const rect = card.getBoundingClientRect();
             
@@ -1496,7 +1499,6 @@
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
 
-            // Little sound
             playTone(400 + Math.random() * 200, 0.1, 'square', 0.04);
         }
 
@@ -1505,7 +1507,6 @@
             initAudio();
             playCelebrationChime();
 
-            // Confetti explosion
             if (typeof confetti === 'function') {
                 confetti({
                     particleCount: 100,
@@ -1533,7 +1534,6 @@
             document.getElementById('question-text').style.display = 'none';
             document.getElementById('videoContainer').style.display = 'block';
 
-            // Floating hearts
             spawnHeartBurst(25);
         }
 
